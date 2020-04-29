@@ -370,6 +370,7 @@ apn_return apn_send(apn_ctx_t *const ctx, const apn_payload_t *payload, apn_arra
                     auto_reconnect = 1;
                     continue;
                 }
+		break;
             } else if (errcode == APN_ERR_TOKEN_INVALID) {
                 errno = 0;
                 ret = APN_SUCCESS;
