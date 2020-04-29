@@ -36,6 +36,7 @@
 #include "apn_strerror.h"
 #include "apn_log.h"
 #include "apn_ssl.h"
+#include <sys/select.h>
 
 #ifdef APN_HAVE_FCNTL_H
 #include <fcntl.h>
@@ -604,8 +605,8 @@ static apn_return __apn_connect(apn_ctx_t *const ctx, struct __apn_apple_server 
         ctx->sock = sock;
 
 #ifndef _WIN32
-        int sock_flags = fcntl(ctx->sock, F_GETFL, 0);
-        fcntl(ctx->sock, F_SETFL, sock_flags | O_NONBLOCK);
+        //int sock_flags = fcntl(ctx->sock, F_GETFL, 0);
+        //fcntl(ctx->sock, F_SETFL, sock_flags | O_NONBLOCK);
 #else
         int sock_flags = 1;
         ioctlsocket(ctx->sock, FIONBIO, (u_long *) &sock_flags);
