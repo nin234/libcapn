@@ -367,7 +367,8 @@ int apn_ssl_read(const apn_ctx_t *const ctx, char *buff, size_t length) {
                         errno = APN_ERR_NETWORK_TIMEDOUT;
                         return -1;
                     default:
-                        //errno = APN_ERR_SSL_READ_FAILED;
+//This is for the reconnect logic to kick in
+                        errno = APN_ERR_CONNECTION_CLOSED;
                         return -1;
                 }
             case SSL_ERROR_ZERO_RETURN:
